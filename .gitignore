@@ -1,0 +1,30 @@
+### ejercicio del 16.03.16####
+profesionistas<- sample(5:8, 60, replace=T)
+pib<- sample(0:5, 60, replace=T)
+ocupación<- sample(40:60, 60, replace=T)
+desocupados<- sample(3:8, 60, replace=T)
+data<- data.frame(profesionistas,pib, ocupación, desocupados)
+st<-data[c(1:12,49:60),]
+serie<- ts(data[,4] , start=2010, frequency = 12)
+layout(1:2)
+plot(profesionistas, main= "Profesionistas", xlab = "meses", ylab = "Número de personas")
+plot (ocupación, main= "Profesionistas", xlab = "meses", ylab = "Número de personas")
+layout(1:2)
+plot(pib, main= "PIB", xlab = "meses", ylab = "pocentaje")
+plot (desocupados, main= "desocupados", xlab = "meses", ylab = "Número de personas")
+layout(1:4)
+plot(profesionistas, main= "Profesionistas", xlab = "meses", ylab = "Número de personas")
+plot (ocupación, main= "Profesionistas", xlab = "meses", ylab = "Número de personas")
+plot(pib, main= "PIB", xlab = "meses", ylab = "pocentaje")
+plot (desocupados, main= "desocupados", xlab = "meses", ylab = "Número de personas")
+prof<- ts(profesionistas , start=2010, frequency = 12)
+pibb<- ts(pib , start=2010, frequency = 12)
+ocu<- ts(ocupación, start=2010, frequency = 12)
+des<-ts(desocupados, start=2010, frequency = 12)
+
+seriemultipledata  <- ts.intersect(prof,pibb,ocu,des)
+seriemultiplediv<-window(seriemultipledata, start=c(2014,1), end=c(2014,12))
+plot(seriemultiplediv, main= "año 2014", xlab = "meses", ylab = "Número de personas")
+
+
+#### no tiene una variación estacionaria ya que los números fueron generados aleatoriamente
